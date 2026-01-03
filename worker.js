@@ -95,7 +95,7 @@ async function handleRequest(request) {
         'Subscription-Userinfo': userInfo,
         'Profile-Update-Interval': '24',
         'Profile-Title': 'JustMySocks',
-        'Content-Disposition': 'attachment; filename=jms-clash.yaml'
+        'Content-Disposition': 'attachment; filename=JustMySocks.yaml'
       }
     })
   } catch (error) {
@@ -531,7 +531,7 @@ function renameNode(originalName) {
     's2': 'JMS-2 CN2 GT',
     's3': 'JMS-3 CN2 GIA',
     's4': 'JMS-4 SoftBank POP',
-    's5': 'JMS-5 NLD POP',  // 从 NZL (新西兰) 改为 NLD (荷兰)
+    's5': 'JMS-5 NLD POP',
     's801': 'JMS-801 [M]'
   }
   
