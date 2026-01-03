@@ -531,7 +531,7 @@ function renameNode(originalName) {
     's2': 'JMS-2 CN2 GT',
     's3': 'JMS-3 CN2 GIA',
     's4': 'JMS-4 SoftBank POP',
-    's5': 'JMS-5 NZL POP',
+    's5': 'JMS-5 NLD POP',  // 从 NZL (新西兰) 改为 NLD (荷兰)
     's801': 'JMS-801 [M]'
   }
   
