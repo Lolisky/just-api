@@ -1,0 +1,17 @@
+name = "jms-converter"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+workers_dev = false
+
+# Usage limits (Free tier)
+# - 100,000 requests per day
+# - 10ms CPU time per request
+# - 128MB memory per request
+
+# Uncomment and configure if you want to use custom domain
+# routes = [
+#   { pattern = "api.example.com/*", zone_name = "example.com" }
+# ]

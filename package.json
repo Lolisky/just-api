@@ -1,0 +1,33 @@
+{
+  "name": "just-api",
+  "version": "0.1.0-alpha",
+  "description": "Cloudflare Worker to convert JustMySocks subscriptions to Clash format with bandwidth tracking",
+  "main": "worker.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "preview": "wrangler dev --remote"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "justmysocks",
+    "clash",
+    "proxy",
+    "subscription-converter",
+    "vpn",
+    "bandwidth-tracker"
+  ],
+  "author": "Lolisky",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lolisky/just-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lolisky/just-api/issues"
+  },
+  "homepage": "https://github.com/Lolisky/just-api#readme",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
