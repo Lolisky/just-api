@@ -629,15 +629,22 @@ function generateClashConfig(proxies, nodeNames, customConfig) {
         '*.lan',
         '*.local',
         '*.localhost',
+        '*.localdomain',
+        '*.home',
         'localhost.ptlogin2.qq.com',
         'localhost.sec.qq.com',
+        'router.*',
+        'nas.*',
         '+.srv.nintendo.net',
         '+.stun.playstation.net',
         'xbox.*.microsoft.com',
+        '*.xboxlive.com',
         '*.msftncsi.com',
         '*.msftconnecttest.com',
         'time.*.com',
         'ntp.*.com',
+        '*.ntp.org',
+        'time*.google.com',
         '+.ntp.org.cn',
         'time.*.apple.com',
         '+.pool.ntp.org',
@@ -720,9 +727,8 @@ function convertToYaml(obj, indent = 0) {
             line ? `${spaces}  ${line}` : ''
           ).join('\n')
         } else {
-          const strValue = typeof item === 'string' && (item.includes(':') || item.includes('#') || item.includes(',')) 
-            ? `"${item}"` 
-            : item
+          const needsQuote = typeof item === 'string' && (/[:#,]/.test(item) || /^[\-\?\@\&\*!\+\.]/.test(item))
+          const strValue = needsQuote ? `"${item}"` : item
           yaml += `${spaces}  - ${strValue}\n`
         }
       }
@@ -730,9 +736,8 @@ function convertToYaml(obj, indent = 0) {
       yaml += `${spaces}${key}:\n`
       yaml += convertToYaml(value, indent + 1)
     } else {
-      const strValue = typeof value === 'string' && (value.includes(':') || value.includes('#')) 
-        ? `"${value}"` 
-        : value
+      const needsQuote = typeof value === 'string' && (/[:#]/.test(value) || /^[\-\?\@\&\*!\+\.]/.test(value))
+      const strValue = needsQuote ? `"${value}"` : value
       yaml += `${spaces}${key}: ${strValue}\n`
     }
   }
