@@ -230,15 +230,14 @@ function getBuiltinConfig() {
       { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml', group: 'MEDIA' },
       { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Nintendo.yaml', group: 'PROXY' },
       // 微软服务
-      { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Bing.yaml', group: 'PROXY' },
-      { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/OneDrive.yaml', group: 'PROXY' },
-      { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Microsoft.yaml', group: 'PROXY' },
+      { url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bing/Bing.yaml', group: 'PROXY' },
+      { url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OneDrive/OneDrive.yaml', group: 'PROXY' },
+      { url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml', group: 'PROXY' },
       // Apple
       { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Apple.yaml', group: 'PROXY' },
       // 社交通讯
       { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Telegram.yaml', group: 'MEDIA' },
       // AI 服务
-      { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OpenAi.yaml', group: 'PROXY' },
       { url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml', group: 'PROXY' },
       { url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml', group: 'PROXY' },
       { url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml', group: 'PROXY' },
@@ -331,10 +330,10 @@ function getBuiltinConfig() {
       { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaCompanyIp.yaml', group: 'DIRECT' },
       { url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Download.yaml', group: 'DIRECT' },
       { rule: 'GEOIP,CN', group: 'DIRECT' },
-      // CFnat 优化规则（硬编码）
-      { rule: 'PROCESS-NAME,cfnat', group: 'PROXY' },
-      { rule: 'PROCESS-NAME,colo', group: 'PROXY' },
-      { rule: 'PROCESS-NAME,subs-check.exe', group: 'PROXY' },
+      // CF 优选/订阅检查工具直连
+      { rule: 'PROCESS-NAME,cfnat', group: 'DIRECT' },
+      { rule: 'PROCESS-NAME,colo', group: 'DIRECT' },
+      { rule: 'PROCESS-NAME,subs-check.exe', group: 'DIRECT' },
       // 兜底
       { rule: 'MATCH', group: 'OTHER' }
     ]
