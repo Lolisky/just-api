@@ -4,32 +4,16 @@
 
 ## Overview
 
-A Cloudflare Worker that converts JustMySocks subscription links to Clash-compatible YAML format with automatic bandwidth tracking, custom node naming, and comprehensive routing rules.
+A Cloudflare Worker that converts JustMySocks subscription links to Clash-compatible YAML format with automatic bandwidth tracking, intelligent DNS resolution, and comprehensive routing rules.
 
 ## Features
 
-### Core Functionality
-- **Automatic Protocol Conversion**: Converts SS/VMess/Trojan protocols to Clash format
-- **Bandwidth Tracking**: Fetches real-time bandwidth usage from JustMySocks API
-- **Decimal to Binary Conversion**: Corrects bandwidth display (500GB shows as 500GB, not 465.7GB)
-- **Custom Node Naming**: Renames JMS nodes with readable labels (e.g., `JMS-3 CN2 GIA`)
-- **Domain Preference**: Automatically adds `usedomains=1` parameter for domain-based routing
-
-### Built-in Rule Sets
-- **Ad Blocking**: ACL4SSR + AWAvenue Ads Rule (~900 rules)
-- **Steam Optimization**: Prioritized Steam login servers for optimal gaming experience
-- **Academic Resources**: Direct routing for 60+ scholarly databases (IEEE, Nature, Springer, JSTOR, etc.)
-- **Media Streaming**: Optimized routing for Netflix, YouTube, Bilibili, etc.
-- **AI Services**: Dedicated routing for OpenAI, Claude, Gemini, Copilot
-- **CFnat Optimization**: Process-based routing for CF optimization tools
-
-### Intelligent Routing
-- Local network and private addresses → Direct
-- Advertising and tracking → Reject
-- International media and services → Proxy
-- Chinese websites and services → Direct
-- Academic journals via CARSI/CERNET → Direct
-- Steam content delivery → Direct (login servers → Prioritized)
+- **Multi-Protocol Support**: Converts SS/VMess/Trojan protocols to Clash format
+- **Bandwidth Tracking**: Real-time bandwidth usage with accurate decimal-to-binary conversion (500GB shows as 500GB, not 465.7GB)
+- **Smart DNS**: DoH-based DNS with fake-ip mode, IPv6 support, and optimized nameserver policies
+- **Custom Node Naming**: Readable node labels (e.g., `JMS-3 CN2 GIA`)
+- **Comprehensive Rules**: Built-in ACL4SSR rules with ad blocking, media optimization, and academic resource routing
+- **Domain Preference**: Automatically enables domain-based routing for better performance
 
 ## Usage
 
@@ -106,19 +90,20 @@ Now any push to the `main` branch will automatically update your worker.
 
 ## Configuration
 
+### Default Settings
+
+- **HTTP Port**: 7890
+- **SOCKS Port**: 7891
+- **DNS Port**: 127.0.0.1:1053
+- **Mode**: Rule-based routing
+- **DNS Mode**: Fake-IP with DoH encryption
+- **Update Interval**: 24 hours
+
 ### Proxy Groups
 
 - **PROXY**: URL-test group for general proxy traffic
-- **MEDIA**: Fallback group for streaming services
-- **OTHER**: Fallback option for unmatched traffic
-
-### Default Settings
-
-- Port: 7890
-- SOCKS Port: 7891
-- Mode: Rule
-- Profile Update Interval: 24 hours
-- Profile Title: JustMySocks
+- **MEDIA**: Fallback group for streaming services  
+- **OTHER**: Manual selection for unmatched traffic
 
 ## Response Headers
 
@@ -130,30 +115,15 @@ Now any push to the `main` branch will automatically update your worker.
 ## Technical Details
 
 ### Bandwidth Conversion
+Automatically converts JustMySocks' decimal bandwidth (1GB = 10³ bytes) to binary format (1GB = 1024³ bytes) for accurate display in Clash clients.
 
-JustMySocks API returns bandwidth in decimal bytes (1GB = 10³ bytes), while Clash clients display in binary bytes (1GB = 1024³ bytes). This worker automatically converts:
-
-```javascript
-// Conversion formula
-decimal_gb = decimal_bytes / 1000³
-binary_bytes = decimal_gb × 1024³
-```
-
-This ensures 500GB subscription displays as 500GB (not 465.7GB).
-
-### Node Naming Map
-
-| JMS ID | Display Name |
-|--------|-------------|
-| s1 | JMS-1 CN2 GT |
-| s2 | JMS-2 CN2 GT |
-| s3 | JMS-3 CN2 GIA |
-| s4 | JMS-4 SoftBank POP |
-| s5 | JMS-5 NZL POP |
-| s801 | JMS-801 [M] |
+### DNS Features
+- **Fake-IP Mode**: IP range `198.18.0.1/16` with comprehensive filter rules
+- **DoH Support**: Encrypted DNS queries via Alibaba DNS and DNSPod
+- **Split DNS**: Dedicated nameservers for education networks, gaming services, and local networks
+- **IPv6 Ready**: Full IPv6 resolution support
 
 ### Supported Protocols
-
 - Shadowsocks (ss://)
 - VMess (vmess://)
 - Trojan (trojan://)
@@ -166,18 +136,16 @@ This ensures 500GB subscription displays as 500GB (not 465.7GB).
 
 ## Troubleshooting
 
-### Issue: "Cannot infer bandwidth URL"
-**Solution**: Provide `bw` parameter explicitly or ensure subscription URL contains `service` and `id` parameters.
-
-### Issue: Bandwidth shows incorrect values
-**Solution**: This should be fixed by the decimal-to-binary conversion. If still incorrect, check JustMySocks API response format.
-
-### Issue: No nodes parsed
-**Solution**: Verify subscription URL is valid and returns base64-encoded proxy list.
+| Issue | Solution |
+|-------|----------|
+| "Cannot infer bandwidth URL" | Provide `bw` parameter or ensure subscription URL contains `service` and `id` parameters |
+| Incorrect bandwidth display | Verify JustMySocks API response format (should be auto-fixed) |
+| No nodes parsed | Check if subscription URL is valid and returns base64-encoded proxy list |
+| DNS resolution issues | Ensure client supports Clash DNS configuration and fake-ip mode |
 
 ## Contributing
-
-This is an alpha version. Contributions, bug reports, and feature requests are welcome!
+requires code modification)
+- Runs exclusively on Cloudflare Workersbug reports, and feature requests are welcome!
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -193,10 +161,10 @@ MIT License - See LICENSE file for details
 
 - **ACL4SSR**: Rule sets and configuration framework
 - **blackmatrix7**: iOS rule scripts and comprehensive rule collections
-- **AWAvenue (秋风)**: Ad blocking rules
-- **JustMySocks**: VPN service provider
-
-## Disclaimer
+- **AWAvenue  - Rule sets and routing framework
+- **blackmatrix7** - Comprehensive rule collections
+- **AWAvenue (秋风)** - Ad blocking rules
+- **JustMySocks** -
 
 This project is for educational purposes only. Users are responsible for complying with local laws and JustMySocks Terms of Service.
 
@@ -205,3 +173,5 @@ This project is for educational purposes only. Users are responsible for complyi
 **Version**: 0.1.0-alpha  
 **Last Updated**: 2026-01-03  
 **Status**: Alpha - Expect breaking changes
+4  
+**Status**: Alpha - Active Development

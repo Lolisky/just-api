@@ -619,6 +619,61 @@ function generateClashConfig(proxies, nodeNames, customConfig) {
     mode: 'Rule',
     'log-level': 'info',
     'external-controller': '127.0.0.1:9090',
+    dns: {
+      enable: true,
+      listen: '127.0.0.1:1053',
+      ipv6: true,
+      'enhanced-mode': 'fake-ip',
+      'fake-ip-range': '198.18.0.1/16',
+      'fake-ip-filter': [
+        '*.lan',
+        '*.local',
+        '*.localhost',
+        'localhost.ptlogin2.qq.com',
+        'localhost.sec.qq.com',
+        '+.srv.nintendo.net',
+        '+.stun.playstation.net',
+        'xbox.*.microsoft.com',
+        '*.msftncsi.com',
+        '*.msftconnecttest.com',
+        'time.*.com',
+        'ntp.*.com',
+        '+.ntp.org.cn',
+        'time.*.apple.com',
+        '+.pool.ntp.org',
+        '+.market.xiaomi.com',
+        '+.pku.edu.cn',
+        '+.edu.cn',
+        '*.pku.edu.cn',
+        '+.home.arpa',
+        '+.ipv6.microsoft.com'
+      ],
+      'default-nameserver': [
+        '223.5.5.5',
+        '119.29.29.29'
+      ],
+      nameserver: [
+        'https://doh.pub/dns-query',
+        'https://dns.alidns.com/dns-query',
+        '223.5.5.5'
+      ],
+      'nameserver-policy': {
+        '+.pku.edu.cn': ['162.105.129.88', '162.105.129.122'],
+        '+.edu.cn': ['162.105.129.88', '223.5.5.5'],
+        'geosite:cn': ['223.5.5.5', '119.29.29.29']
+      },
+      'proxy-server-nameserver': [
+        'https://doh.pub/dns-query',
+        'https://dns.alidns.com/dns-query'
+      ],
+      'direct-nameserver': [
+        '223.5.5.5',
+        '119.29.29.29'
+      ],
+      'use-hosts': true,
+      'use-system-hosts': true,
+      'respect-rules': true
+    },
     proxies: proxies,
     'proxy-groups': proxyGroups,
     'rule-providers': {},
