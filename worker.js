@@ -664,13 +664,14 @@ function generateClashConfig(proxies, nodeNames, customConfig) {
         '223.5.5.5'
       ],
       'nameserver-policy': {
-        '+.pku.edu.cn': ['162.105.129.88', '162.105.129.122'],
-        '+.edu.cn': ['162.105.129.88', '223.5.5.5'],
-        'geosite:cn': ['223.5.5.5', '119.29.29.29']
+        '+.pku.edu.cn': '162.105.129.88',
+        '+.edu.cn': '162.105.129.88',
+        'geosite:cn': '223.5.5.5'
       },
       'proxy-server-nameserver': [
         'https://doh.pub/dns-query',
-        'https://dns.alidns.com/dns-query'
+        'https://dns.alidns.com/dns-query',
+        '223.5.5.5'
       ],
       'direct-nameserver': [
         '223.5.5.5',
