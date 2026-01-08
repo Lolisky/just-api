@@ -618,8 +618,11 @@ function generateClashConfig(proxies, nodeNames, customConfig) {
     mode: 'Rule',
     'log-level': 'info',
     'external-controller': '127.0.0.1:9090',
+    tun: {
+      enable: false
+    },
     dns: {
-      enable: true,
+      enable: false,
       listen: '127.0.0.1:1053',
       ipv6: true,
       'enhanced-mode': 'fake-ip',
